@@ -42,6 +42,8 @@ const ProfileNftCard = ({ nft }) => {
         if (!res.ok || !phyres.ok) {
           throw new Error('Failed to fetch data');
         }
+        console.log(res);
+        
 
         const result = await res.json();
         const phyresult = await phyres.json();
