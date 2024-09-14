@@ -16,6 +16,8 @@ const Collection = ({ params }) => {
   const [name, setName] = useState("");
   const [brandid, setBrandId] = useState("");
   const [logo, setLogos] = useState("");
+  const [brandTokenCount, setBrandTokenCount] = useState([]);
+
 
   useEffect(() => {
     const brandMatch = async () => {
@@ -44,6 +46,9 @@ const Collection = ({ params }) => {
           }
         });
 
+        const fantokensResponse = await fetch(`${baseUri}/fantoken/all`)
+
+
         if (!res.ok || !phyres.ok || !brands.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -51,13 +56,27 @@ const Collection = ({ params }) => {
         const result = await res.json();
         const phygitals = await phyres.json();
         const brandData = await brands.json();
+        const fantokensData = await fantokensResponse.json()
+        
+        const brandsTokenCount = result.reduce((count, collection) => {
+          count[collection.brand_id] = fantokensData.filter(
+            (token) => token.brand_id === collection.brand_id
+          ).length
+          return count
+        }, {})
 
+        
+        
         // Find the corresponding brand in result
         const matchedBrand = result.find(coll => coll.id === id);
         if (matchedBrand) {
           setCollections(matchedBrand);
         }
-
+        
+        
+        const brandTokenCount = brandsTokenCount[matchedBrand?.brand_id]
+        setBrandTokenCount(brandTokenCount)
+        
         // Filter collections by the brand id
         const matchedCollections = phygitals.filter(phygital => phygital.collection_id === id);
 
@@ -178,7 +197,7 @@ const Collection = ({ params }) => {
 
         <div className='mt-10 flex flex-wrap gap-4 md:gap-6 lg:gap-8'>
           {phygitals?.map((nft, index) => (
-            <HotNftCard key={index} nft={nft} />
+            <HotNftCard key={index} nft={nft} fantokens={brandTokenCount} />
           ))}
         </div>
       </div>
