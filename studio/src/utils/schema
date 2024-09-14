@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// model Brand {
+//   id           Int      @id @default(autoincrement())
+//   name         String   @unique
+//   description  String
+//   logoImage    String  
+//   brandRepresentative String
+//   contactEmail String  @unique
+//   contactPhone String  
+//   shippingAddress  String
+//   brandInfo   String  
+// }
+
+
+// model Phygital {
+//   id           Int      @id @default(autoincrement())
+//   name         String   @unique
+//   categories   String[] // Array of strings for categories
+//   description  String
+//   price        String  
+//   quantity     String     
+//   royalty      String?
+//   image        String
+//   productInfo  String 
+//   colours       String // Array of strings for multiple colors
+//   size         String   
+//   weight       String     // Decimal for precise weight representation
+//   material     String   
+//   usage        String?   
+//   uniqueQuality String?  
+//   manufacturer  String  
+//   madeIn       String   
+//   variant       String[]
+// }
+
+// model WebXR {
+//   id                 Int      @id @default(autoincrement())  
+//   image_360           String   
+//   customizations     String[]
+//   free_nft_image      String?
+//   gold_reward        String
+//   silver_reward       String   
+//   bronze_reward       String   
+// }
+
+model Manager {
+  id                 Int      @id @default(autoincrement())
+  walletAddress      String   @unique
+  brands              Brand[]
+}
+
+model Brand {
+  id                  Int      @id @default(autoincrement())
+  managerId           String
+  manager             Manager   @relation(fields: [managerId], references: [walletAddress])
+  brandName                String   @unique
+  description         String
+  logoImage           String
+  brandRepresentative String
+  contactEmail        String
+  contactPhone        String
+  shippingAddress     String
+  brandInfo           String
+  collections         Collection[]
+}
+
+model Collection {
+  id                 Int      @id @default(autoincrement())
+  collectionName               String   @unique
+  brandId            String
+  brand              Brand     @relation(fields: [brandId], references: [brandName])
+  phygitals          Phygital[] 
+}
+
+model Phygital {
+  id                 Int      @id @default(autoincrement())
+  phygitalName               String   @unique
+  categories         String[]
+  description         String
+  price               String
+  quantity            String
+  royalty             String?
+  image               String
+  productInfo         String
+  colours             String[]
+  size                String
+  weight              String
+  material            String
+  usage               String?
+  uniqueQuality      String?
+  manufacturer        String
+  madeIn             String
+  variants           Variant[]
+  contractAddress    String?
+  graphURL           String?
+  webXR              WebXR[]   // Optional WebXR
+  collectionId       String
+  collection          Collection?@relation(fields: [collectionId], references: [collectionName])
+}
+
+model Variant {
+  id                 Int      @id @default(autoincrement())
+  variant                String
+  description         String
+  phygitalId          String
+  phygital           Phygital  @relation(fields: [phygitalId], references: [phygitalName])
+}
+
+model WebXR { // Optional WebXR
+  id                 Int      @id @default(autoincrement())
+  image360          String
+  customizations     String[]
+  freeNftImage     String?
+  goldReward        String
+  silverReward      String
+  bronzeReward      String
+  phygitalId        String      // Relation to Phygital
+  phygital          Phygital  @relation(fields: [phygitalId], references: [phygitalName])// Optional relation
+}

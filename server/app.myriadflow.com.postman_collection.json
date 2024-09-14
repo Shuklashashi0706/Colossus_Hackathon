@@ -1,0 +1,862 @@
+{
+	"info": {
+		"_postman_id": "2a274e15-0dbd-400a-a399-7a5e81f29fa2",
+		"name": "app.myriadflow.com",
+		"description": "CRUD operations for MyApp API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "20001045",
+		"_collection_link": "https://flexablellc.postman.co/workspace/Team-Workspace~ce092635-dc19-4dd1-83d0-1d91957842ef/collection/20001045-2a274e15-0dbd-400a-a399-7a5e81f29fa2?action=share&source=collection_link&creator=20001045"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"testuser\",\n\t\"wallet_address\": \"0x123456789\",\n\t\"name\": \"Test User\",\n\t\"profile_image\": \"https://example.com/image.png\"\n}"
+						},
+						"url": "http://localhost:8080/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"updateduser\",\n\t\"wallet_address\": \"0x987654321\",\n\t\"name\": \"Updated User\",\n\t\"profile_image\": \"https://example.com/updatedimage.png\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "Create Brand",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Test Brand\",\n\t\"description\": \"Brand Description\",\n\t\"logo_image\": \"https://example.com/logo.png\",\n\t\"cover_image\": \"https://example.com/cover.png\",\n\t\"representative\": \"John Doe\",\n\t\"contact_email\": \"contact@example.com\",\n\t\"contact_phone\": \"1234567890\",\n\t\"shipping_address\": \"123 Street, City, Country\",\n\t\"additional_info\": \"Additional Info\",\n\t\"industry\": \"Retail\",\n\t\"tags\": \"tag1,tag2\",\n\t\"fees\": 100,\n\t\"payout_address\": \"0x123456789\",\n\t\"access_master\": \"Access Master\",\n\t\"trade_hub\": \"Trade Hub\",\n\t\"blockchain\": \"Ethereum\",\n\t\"chain_id\": \"1\",\n\t\"manager_id\": 1\n}"
+						},
+						"url": "http://localhost:8080/brands"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Brand",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/brands/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"brands",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Brand Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/brands/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Brand",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Updated Brand\",\n\t\"description\": \"Updated Description\",\n\t\"logo_image\": \"https://example.com/updatedlogo.png\",\n\t\"cover_image\": \"https://example.com/updatedcover.png\",\n\t\"representative\": \"Jane Doe\",\n\t\"contact_email\": \"updated@example.com\",\n\t\"contact_phone\": \"0987654321\",\n\t\"shipping_address\": \"456 Street, New City, Country\",\n\t\"additional_info\": \"Updated Info\",\n\t\"industry\": \"E-commerce\",\n\t\"tags\": \"tag3,tag4\",\n\t\"fees\": 150,\n\t\"payout_address\": \"0x987654321\",\n\t\"access_master\": \"Updated Master\",\n\t\"trade_hub\": \"Updated Hub\",\n\t\"blockchain\": \"Binance\",\n\t\"chain_id\": \"56\",\n\t\"manager_id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/brands/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"brands",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Brand",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/brands/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"brands",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Collections",
+			"item": [
+				{
+					"name": "Create Collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Test Collection\",\n\t\"description\": \"Collection Description\",\n\t\"logo_image\": \"https://example.com/logo.png\",\n\t\"cover_image\": \"https://example.com/cover.png\",\n\t\"category\": \"Art\",\n\t\"tags\": \"art,digital\",\n\t\"status\": 1,\n\t\"brand_id\": \"some-uuid\"\n}"
+						},
+						"url": "http://localhost:8080/collections"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Collection",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/collections/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"collections",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Collection Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/collections/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Collection",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Updated Collection\",\n\t\"description\": \"Updated Description\",\n\t\"logo_image\": \"https://example.com/updatedlogo.png\",\n\t\"cover_image\": \"https://example.com/updatedcover.png\",\n\t\"category\": \"Music\",\n\t\"tags\": \"music,audio\",\n\t\"status\": 2,\n\t\"brand_id\": \"updated-uuid\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/collections/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"collections",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Collection",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/collections/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"collections",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Phygitals",
+			"item": [
+				{
+					"name": "Create Phygital",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Test Phygital\",\n\t\"category\": \"Fashion\",\n\t\"description\": \"Phygital Description\",\n\t\"price\": 100,\n\t\"quantity\": 10,\n\t\"royality\": 5,\n\t\"image\": \"https://example.com/image.png\",\n\t\"product_info\": \"Product Info\",\n\t\"color\": \"Red\",\n\t\"size\": \"M\",\n\t\"weight\": 200,\n\t\"material\": \"Cotton\",\n\t\"usage\": \"Wearable\",\n\t\"quality\": \"High\",\n\t\"manufacturer\": \"Manufacturer Name\",\n\t\"origin_country\": \"Country\",\n\t\"metadata_uri\": \"https://example.com/metadata\",\n\t\"deployer_address\": \"0x123456789\",\n\t\"contract_address\": \"0x987654321\",\n\t\"graph_url\": \"https://example.com/graph\",\n\t\"collection_id\": 1\n}"
+						},
+						"url": "http://localhost:8080/phygitals"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Phygital",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/phygitals/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"phygitals",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Phygital Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/phygitals/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Phygital",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Updated Phygital\",\n\t\"category\": \"Electronics\",\n\t\"description\": \"Updated Description\",\n\t\"price\": 200,\n\t\"quantity\": 20,\n\t\"royality\": 10,\n\t\"image\": \"https://example.com/updatedimage.png\",\n\t\"product_info\": \"Updated Product Info\",\n\t\"color\": \"Blue\",\n\t\"size\": \"L\",\n\t\"weight\": 300,\n\t\"material\": \"Plastic\",\n\t\"usage\": \"Usable\",\n\t\"quality\": \"Medium\",\n\t\"manufacturer\": \"Updated Manufacturer\",\n\t\"origin_country\": \"New Country\",\n\t\"metadata_uri\": \"https://example.com/updatedmetadata\",\n\t\"deployer_address\": \"0x987654321\",\n\t\"contract_address\": \"0x123456789\",\n\t\"graph_url\": \"https://example.com/updatedgraph\",\n\t\"collection_id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/phygitals/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"phygitals",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Phygital",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/phygitals/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"phygitals",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WebXR",
+			"item": [
+				{
+					"name": "Create WebXR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"image360\": \"https://example.com/360image.png\",\n\t\"video360\": \"https://example.com/360video.mp4\",\n\t\"rewards_metadata_uri\": \"https://example.com/rewardsmetadata\",\n\t\"customizations\": \"Customizations\",\n\t\"free_nft_image\": \"https://example.com/nftimage.png\",\n\t\"gold_reward\": \"Gold Reward\",\n\t\"silver_reward\": \"Silver Reward\",\n\t\"bronze_reward\": \"Bronze Reward\",\n\t\"phygital_id\": \"some-uuid\"\n}"
+						},
+						"url": "http://localhost:8080/webxr"
+					},
+					"response": []
+				},
+				{
+					"name": "Get WebXR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/webxr/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"webxr",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get WebXR Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/webxr/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Update WebXR",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"image360\": \"https://example.com/updated360image.png\",\n\t\"video360\": \"https://example.com/updated360video.mp4\",\n\t\"rewards_metadata_uri\": \"https://example.com/updatedrewardsmetadata\",\n\t\"customizations\": \"Updated Customizations\",\n\t\"free_nft_image\": \"https://example.com/updatednftimage.png\",\n\t\"gold_reward\": \"Updated Gold Reward\",\n\t\"silver_reward\": \"Updated Silver Reward\",\n\t\"bronze_reward\": \"Updated Bronze Reward\",\n\t\"phygital_id\": \"updated-uuid\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/webxr/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"webxr",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete WebXR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/webxr/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"webxr",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Avatars",
+			"item": [
+				{
+					"name": "Create Avatar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"avatar_id\": 1,\n\t\"url\": \"https://example.com/avatar.png\",\n\t\"user_id\": \"some-uuid\",\n\t\"phygital_id\": \"some-uuid\"\n}"
+						},
+						"url": "http://localhost:8080/avatars"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Avatar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avatars/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avatars",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Avatar Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/avatars/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Avatar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"avatar_id\": 2,\n\t\"url\": \"https://example.com/updatedavatar.png\",\n\t\"user_id\": \"updated-uuid\",\n\t\"phygital_id\": \"updated-uuid\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/avatars/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avatars",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Avatar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/avatars/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avatars",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Variants",
+			"item": [
+				{
+					"name": "Create Variant",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"varient\": \"Color\",\n\t\"description\": \"Color Variant\",\n\t\"phygital_id\": \"some-uuid\"\n}"
+						},
+						"url": "http://localhost:8080/variants"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Variant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/variants/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"variants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Variant Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/variants/all"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Variant",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"varient\": \"Size\",\n\t\"description\": \"Size Variant\",\n\t\"phygital_id\": \"updated-uuid\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/variants/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"variants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Variant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/variants/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"variants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

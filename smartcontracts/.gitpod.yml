@@ -1,0 +1,43 @@
+---
+image:
+  file: .gitpod.Dockerfile
+ports:
+  - name: Graph query
+    port: 8000
+    visibility: private
+    onOpen: open-browser
+
+tasks:
+  - init: |
+      npm install
+      cd subgraph && yarn install && cd -
+    command: gp sync-done depinit && exit
+  - name: Ethereum Node
+    command: ganache-cli -h 0.0.0.0 -m "$MNEMONIC"
+  - name: Graph Node
+    command: |
+      cd /home/gitpod/graph-docker/graph-node/docker
+      docker-compose up -d
+      sleep 10
+      gp sync-done graphnode
+      docker-compose logs -f
+  - name: Create deploy
+    command: |
+      gp sync-await depinit
+      gp sync-await graphnode
+      gp await-port 8020
+      cd subgraph && yarn create-local && cd -
+      gp sync-done graphdeploy
+      exit
+  - name: Smart contract
+    command: |
+      gp sync-await depinit
+      gp sync-await graphdeploy
+      gp sync-await graphnode
+      gp await-port 8020
+      ./watch.sh
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - graphql.vscode-graphql
+    - juanblanco.solidity

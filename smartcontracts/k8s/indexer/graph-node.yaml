@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graph-node
+spec:
+  selector:
+    matchLabels:
+      name: graph-node
+  template:
+    metadata:
+      labels:
+        name: graph-node
+    spec:
+      containers:
+        - name: graph-node
+          image: graphprotocol/graph-node
+          resources:
+            limits:
+              memory: "327Mi"
+              cpu: "400m"
+          ports:
+            - containerPort: 8000
+            - containerPort: 8001
+            - containerPort: 8020
+            - containerPort: 8030
+            - containerPort: 8040
+          env:
+            - name: "ipfs"
+              value: "ipfs-service:5001"
+            - name: "ethereum"
+              valueFrom:
+                secretKeyRef:
+                  name: graph-secret
+                  key: ethereum
+            - name: "GRAPH_LOG"
+              value: info
+
+            - name: "postgres_host"
+              valueFrom:
+                secretKeyRef:
+                  name: graph-secret
+                  key: postgres_host
+            - name: "postgres_user"
+              valueFrom:
+                secretKeyRef:
+                  name: graph-secret
+                  key: postgres_user
+            - name: "postgres_pass"
+              valueFrom:
+                secretKeyRef:
+                  name: graph-secret
+                  key: postgres_pass
+            - name: "postgres_db"
+              valueFrom:
+                secretKeyRef:
+                  name: graph-secret
+                  key: postgres_db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: graph-service
+spec:
+  type: NodePort
+  selector:
+    name: graph-node
+  ports:
+    - name: "rpc"
+      port: 8020
+      targetPort: 8020
+    - name: "http-query"
+      port: 8000
+      targetPort: 8000

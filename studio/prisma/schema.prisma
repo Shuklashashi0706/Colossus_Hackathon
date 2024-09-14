@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Manager {
+  id                 String      @id @default(uuid())
+  walletAddress      String   @unique
+  brands              Brand[]
+}
+
+model Brand {
+  id                  String      @id @default(uuid())
+  managerId           String?
+  manager             Manager?   @relation(fields: [managerId], references: [walletAddress])
+  brandName           String   @unique
+  description         String
+  logoImage           String
+  brandRepresentative String
+  contactEmail        String
+  contactPhone        String
+  shippingAddress     String
+  brandInfo           String
+  collections         Collection []
+}
+
+model Collection {
+  id                 String      @id @default(uuid())
+  collectionName     String   @unique
+  brandId            String
+  brand              Brand?     @relation(fields: [brandId], references: [brandName])
+  phygitals          Phygital[] 
+}
+
+model Phygital {
+  id                 String      @id @default(uuid())
+  phygitalName               String   @unique
+  categories         String[]
+  description         String
+  price               String
+  quantity            String
+  royalty             String?
+  image               String
+  productInfo         String
+  colours             String
+  size                String
+  weight              String
+  material            String
+  usage               String?
+  uniqueQuality      String?
+  manufacturer        String
+  madeIn             String
+  variants           Variant[]
+  contractAddress    String?
+  graphURL           String?
+  webXR              WebXR[]   // Optional WebXR
+  avatar             Avatar[] 
+  collectionId       String
+  collection         Collection?@relation(fields: [collectionId], references: [collectionName])
+}
+
+model Variant {
+  id                 String      @id @default(uuid())
+  variant                String
+  description         String
+  phygitalId          String
+  phygital           Phygital  @relation(fields: [phygitalId], references: [phygitalName])
+}
+
+model WebXR { // Optional WebXR
+  id                 String      @id @default(uuid())
+  image360          String
+  customizations     String[]
+  freeNftImage     String?
+  goldReward        String
+  silverReward      String
+  bronzeReward      String
+  phygitalId        String      // Relation to Phygital
+  phygital          Phygital  @relation(fields: [phygitalId], references: [phygitalName])// Optional relation
+}
+
+model Avatar{
+  id          String @id @default(uuid())
+  avatarId    String
+  url         String
+  userId      String
+  phygitalId  String      // Relation to Phygital
+  phygital    Phygital  @relation(fields: [phygitalId], references: [phygitalName])// Optional relation
+}
